@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>REVIVE - Symptoms</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+      $(document).ready(function () {
+        $("#symptomForm").submit(function (event) {
+          event.preventDefault();
+          var symptoms = $("#symptoms").val();
+          var sex = $("#sex").val();
+          var age = $("#age").val();
+
+          // Send AJAX request to the backend
+          $.ajax({
+            url: "/symptoms",
+            method: "POST",
+            data: {
+              symptoms: symptoms,
+              sex: sex,
+              age: age
+            },
+            success: function (response) {
+              $("#result").text("Treatment: " + response.treatment);
+            },
+            error: function (xhr, status, error) {
+              console.log(error);
+              $("#result").text("An error occurred");
+            }
+          });
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <h1>Health Heroes Connect - Symptoms</h1>
+    <form id="symptomForm" method="POST">
+      <label for="symptoms">Symptoms (comma-separated):</label>
+      <input type="text" id="symptoms" name="symptoms" required /><br />
+      <label for="sex">Sex:</label>
+      <select id="sex" name="sex">
+        <option value="male">Male</option>
+        <option value="female">Female</option> </select
+      ><br />
+      <label for="age">Age:</label>
+      <input type="number" id="age" name="age" required /><br />
+      <input type="submit" value="Check Symptoms" />
+    </form>
+    <div id="result"></div>
+  </body>
+</html>

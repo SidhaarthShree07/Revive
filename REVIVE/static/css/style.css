@@ -1,0 +1,36 @@
+.container {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center;
+}
+
+input,
+textarea,
+button {
+  display: block;
+  margin-bottom: 10px;
+  width: 100%;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+ul li {
+  margin-bottom: 10px;
+}
+
+#chat-messages {
+  height: 300px;
+  overflow-y: scroll;
+  border: 1px solid #ccc;
+  padding: 10px;
+}
+
+#treatment-result {
+  margin-top: 10px;
+  border: 1px solid #ccc;
+  padding: 10px;
+}

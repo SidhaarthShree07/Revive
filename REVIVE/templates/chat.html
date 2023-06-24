@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>REVIVE - Chat</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <h1>Health Heroes Connect - Chat</h1>
+
+    <div id="chat-messages"></div>
+
+    <form id="chat-form">
+      <input type="text" id="message-input" placeholder="Type your message" />
+      <button type="submit">Send</button>
+    </form>
+
+    <script>
+      // Example code for handling chat form submission using AJAX
+      document
+        .getElementById("chat-form")
+        .addEventListener("submit", function (event) {
+          event.preventDefault();
+
+          var message = document.getElementById("message-input").value;
+
+          // Perform AJAX request to chat endpoint
+          // Replace the following code with appropriate AJAX request
+          var xhr = new XMLHttpRequest();
+          xhr.open("POST", "/chat", true);
+          xhr.setRequestHeader(
+            "Content-type",
+            "application/x-www-form-urlencoded"
+          );
+          xhr.onreadystatechange = function () {
+            if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+              var response = JSON.parse(xhr.responseText);
+              var messageElement = document.createElement("p");
+              messageElement.innerText = response.message;
+              document
+                .getElementById("chat-messages")
+                .appendChild(messageElement);
+
+              document.getElementById("message-input").value = "";
+            }
+          };
+          xhr.send("message=" + encodeURIComponent(message));
+        });
+    </script>
+  </body>
+</html>
